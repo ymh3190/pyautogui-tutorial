@@ -1,4 +1,5 @@
 from collections import namedtuple
+from pathlib import WindowsPath
 import threading
 from numpy import string_
 import pyautogui
@@ -19,7 +20,7 @@ def main_quest(x, y):
         time.sleep(0.5)
     else:
         print("stop")
-        mouseclick.click(x+10, y+10)
+        mouseclick.click(x, y)
         time.sleep(0.5)
 
 
@@ -31,16 +32,18 @@ def left_shift(x, y):
         time.sleep(0.5)
     else:
         print("avoidance")
-        mouseclick.click(x, y)
+        mouseclick.click(x+10, y+10)
         time.sleep(0.5)
 
 
 if __name__ == "__main__":
-    while True:
-        thread_avoidance = Thread(target=left_shift, args=(1340, 630))
+
+    while keyboard.is_pressed('q') == False:
+        # thread_avoidance = Thread(target=left_shift, args=(1340, 630))
         # thread_avoidance.start()
         # thread_avoidance.join()
+        left_shift(1300, 600)
 
-        thread_main = Thread(target=main_quest, args=(1402, 190))
-        thread_main.start()
-        thread_main.join()
+        # thread_main = Thread(target=main_quest, args=(1402, 190))
+        # thread_main.start()
+        # thread_main.join()
