@@ -1,15 +1,7 @@
-from collections import namedtuple
-from pathlib import WindowsPath
-import threading
-from numpy import string_
 import pyautogui
 import time
 import keyboard
-import random
-import win32api
-import win32con
 import mouseclick
-from threading import Thread
 
 
 def main_quest(x, y):
@@ -27,23 +19,12 @@ def main_quest(x, y):
 def left_shift(x, y):
     avoidance = pyautogui.locateOnScreen(
         'static/avoidance.png', region=(x, y, 95, 95), grayscale=True, confidence=0.8)
-    if avoidance == None:
-        print("unavoidance")
-        time.sleep(0.5)
-    else:
+    if avoidance != None:
         print("avoidance")
-        mouseclick.click(x+10, y+10)
+        mouseclick.click(x+40, y+40)
+    else:
         time.sleep(0.5)
 
 
-if __name__ == "__main__":
-
-    while keyboard.is_pressed('q') == False:
-        # thread_avoidance = Thread(target=left_shift, args=(1340, 630))
-        # thread_avoidance.start()
-        # thread_avoidance.join()
-        left_shift(1300, 600)
-
-        # thread_main = Thread(target=main_quest, args=(1402, 190))
-        # thread_main.start()
-        # thread_main.join()
+while keyboard.is_pressed('q') == False:
+    left_shift(1300, 600)
